@@ -1,0 +1,26 @@
+def main():
+    times = []
+    distances = []
+    win_count = [0, 0, 0, 0]
+    with open("input6.txt", "r") as input:
+        s = input.readlines()
+        for time in s[0][6:].split(" "):
+            if time != "":
+                times.append(int(time))
+        for distance in s[1][9:].split(" "):
+            if distance != "":
+                distances.append(int(distance))
+    for i in range(4):
+        localtime = times[i]
+        record = distances[i]
+        for x in range(localtime):
+            if (x * (localtime - x)) > record:
+                win_count[i] = win_count[i] + 1
+    total = 1
+    for win in win_count:
+        total *= win
+    print(total)
+
+
+if __name__ == "__main__":
+    main()
